@@ -1,9 +1,9 @@
 ﻿@*Define Model*@
-@model IEnumerable<Actor>
+@model IEnumerable<Producer>
 
 @*Define viewdata*@
 @{
-    ViewData["Title"] = "List of Actors";
+    ViewData["Title"] = "List of Producers";
 }
 
 @*write code*@
@@ -15,9 +15,11 @@
                 <tr class="text-center">
                     <th>
                         @Html.DisplayNameFor(model => model.profilePictureURL)
-                    </th><th>
+                    </th>
+                    <th>
                         @Html.DisplayNameFor(model => model.fullName)
-                    </th><th>
+                    </th>
+                    <th>
                         @Html.DisplayNameFor(model => model.bio)
                     </th>
                     <th>
@@ -27,7 +29,7 @@
             </thead>
 
             <tbody>
-                @foreach(var item in Model)
+                @foreach (var item in Model)
                 {
                     <tr>
                         <td class="align-middle">
