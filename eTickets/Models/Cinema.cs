@@ -18,6 +18,6 @@ namespace eTickets.Models
         public string description { get; set; }
 
         //relationships
-        public List<Movie> Movies { get; set; }
+        public List<Movie> Movies { get; set; } = new List<Movie>();
     }
 }
