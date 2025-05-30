@@ -9,13 +9,14 @@ namespace eTickets.Controllers
     {
         private readonly IMovieService _service;
 
-        public MoviesController(MovieService service)
+        public MoviesController(IMovieService service)
         {
             _service = service;
         }
-        public async void Index()
+        public async Task<IActionResult> Index()
         {
-            
+            var data = await _service.GetAllAsync();
+            return View(data);
         }
     }
 }

@@ -32,7 +32,7 @@
                     <div class="col-md-6">
                         <div class="card-body">
                             <p class="card-text">@item.description</p>
-                            <p class="card-text"><b>Cinema: </b>@item.Cinema.name</p>
+                            <p class="card-text"><b>Cinema: </b>@item.Cinema?.name</p>
                             <p class="card-text"><b>Category: </b>@item.movieCategory</p>
                             <p class="card-text"><b>Start Date: </b>@item.startDate.ToString("dd MM yyyy")</p>
                             <p class="card-text"><b>End Date: </b>@item.endDate.ToString("dd MM yyyy")</p>
