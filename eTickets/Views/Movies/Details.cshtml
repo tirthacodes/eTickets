@@ -1,0 +1,83 @@
+﻿@model Movie
+
+@{
+    ViewData["Title"] = "Movie Details";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg border-0">
+        <div class="row g-0">
+            <div class="col-md-4 p-3 d-flex align-items-center">
+                <img src="@Model.imageURL" class="img-fluid rounded" alt="@Model.name" style="max-height: 350px; object-fit: cover;" />
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h2 class="card-title mb-3">@Model.name</h2>
+                    <p class="card-text text-muted">@Model.description</p>
+
+                    <div class="mb-2">
+                        <span class="fw-bold">Price:</span> @Model.price.ToString("C")
+                    </div>
+                    <div class="mb-2">
+                        <span class="fw-bold">Category:</span> @Model.movieCategory
+                    </div>
+                    <div class="mb-2">
+                        <span class="fw-bold">Start Date:</span> @Model.startDate.ToString("yyyy-MM-dd")
+                    </div>
+                    <div class="mb-2">
+                        <span class="fw-bold">End Date:</span> @Model.endDate.ToString("yyyy-MM-dd")
+                    </div>
+                    <div class="mb-3">
+                        <span class="fw-bold">Status:</span>
+                        @if (DateTime.Now >= Model.startDate && DateTime.Now <= Model.endDate)
+                        {
+                            <span class="badge bg-success">AVAILABLE</span>
+                        }
+                        else if (DateTime.Now > Model.endDate)
+                        {
+                            <span class="badge bg-danger">EXPIRED</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-primary">UPCOMING</span>
+                        }
+                    </div>
+
+                    <hr />
+
+                    <div class="mb-2">
+                        <span class="fw-bold">Cinema:</span> @(Model.Cinema != null ? Model.Cinema.name : "No cinema info")
+                    </div>
+                    <div class="mb-3">
+                        <span class="fw-bold">Producer:</span> @(Model.Producer != null ? Model.Producer.fullName : "No producer info")
+                    </div>
+
+                    <div>
+                        <strong>Actors:</strong>
+                        @if (Model.Actors_Movies != null && Model.Actors_Movies.Any())
+                        {
+                            <div class="row row-cols-2">
+                                @foreach (var actor in Model.Actors_Movies)
+                                {
+                                    <div class="col d-flex align-items-center mb-2">
+                                        <span class="mx-2">@actor.Actor?.fullName</span>
+                                        <a asp-controller="Actors" asp-action="Details" asp-route-id="@actor.ActorId">
+                                            <img src="@actor.Actor?.profilePictureURL" class="rounded-circle me-2" style="width: 25px; height: 25px; object-fit: cover;" />
+                                        </a>
+                                    </div>
+
+                                }
+                            </div>
+                        }
+                        else
+                        {
+                            <span>No actors listed.</span>
+                        }
+                    </div>
+
+                    <a asp-action="Index" class="btn btn-secondary mt-4">Back to Movies</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

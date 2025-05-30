@@ -32,9 +32,10 @@ namespace eTickets.Models
         public movieCategory movieCategory { get; set; }
 
         //relationships 
-        public List<Actor_Movie> Actors_Movies { get; set; }
+        public List<Actor_Movie> Actors_Movies { get; set; } = new List<Actor_Movie>();
 
         //cinmea
+        [Display(Name ="Cinema ID")]
         public int CinemaId { get; set; }
 
         [ForeignKey("CinemaId")]
@@ -42,6 +43,7 @@ namespace eTickets.Models
 
 
         //producer
+        [Display(Name ="Producer ID")]
         public int ProducerId { get; set; }
 
         [ForeignKey("ProducerId")]

@@ -5,6 +5,6 @@ namespace eTickets.Data.Services
 {
     public interface IMovieService : IEntityBaseRepository<Movie>
     {
-
+        Task<Movie> GetByIdAsync(int id);  // Overriding 
     }
 }
