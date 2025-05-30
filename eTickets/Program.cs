@@ -12,6 +12,7 @@ builder.Services.AddControllersWithViews();
 //serevices configuration
 builder.Services.AddScoped<IActorService, ActorsService>();
 builder.Services.AddScoped<IProducersService, ProducersService>();
+builder.Services.AddScoped<IMovieService, MovieService>();
 
 
 
