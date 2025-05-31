@@ -1,0 +1,80 @@
+﻿@using eTickets.ViewModels
+@model NewMovieVM
+
+@{
+    ViewData["Title"] = "Create Movie";
+}
+
+<h2>Create New Movie</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="name"></label>
+        <input asp-for="name" class="form-control" />
+        <span asp-validation-for="name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="description"></label>
+        <textarea asp-for="description" class="form-control"></textarea>
+        <span asp-validation-for="description" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="price"></label>
+        <input asp-for="price" type="number" step="0.01" class="form-control" />
+        <span asp-validation-for="price" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="imageURL"></label>
+        <input asp-for="imageURL" class="form-control" />
+        <span asp-validation-for="imageURL" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="startDate"></label>
+        <input asp-for="startDate" type="date" class="form-control" />
+        <span asp-validation-for="startDate" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="endDate"></label>
+        <input asp-for="endDate" type="date" class="form-control" />
+        <span asp-validation-for="endDate" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="movieCategory"></label>
+        <select asp-for="movieCategory" class="form-control" asp-items="Html.GetEnumSelectList<eTickets.Data.Enums.movieCategory>()"></select>
+        <span asp-validation-for="movieCategory" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CinemaId">Cinema</label>
+        <select asp-for="CinemaId" class="form-control" asp-items="@(new SelectList(Model.Cinemas, "id", "name"))">
+            <option value="">-- Select Cinema --</option>
+        </select>
+        <span asp-validation-for="CinemaId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ProducerId">Producer</label>
+        <select asp-for="ProducerId" class="form-control" asp-items="@(new SelectList(Model.Producers, "id", "fullName"))">
+            <option value="">-- Select Producer --</option>
+        </select>
+        <span asp-validation-for="ProducerId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Actors</label>
+        <select asp-for="ActorIds" class="form-control" multiple="multiple" asp-items="@(new MultiSelectList(Model.Actors, "id", "fullName"))"></select>
+        <span asp-validation-for="ActorIds" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-2">Create</button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
